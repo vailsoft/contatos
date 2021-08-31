@@ -46,10 +46,10 @@ Fazendo que os contatos sejam mais dinâmicos:
     .tels (um array de strings)
     ✔ Declare na classe ListaDeContatosComponent um atributo contatos do tipo array de contatos @done(21-08-30 12:03)
     ✔ Atribua a esse atributo um array com pelo menos 10 contatos @done(21-08-30 12:03)
-    ☐ Faça com que esses contatos sejam exibidos.
+    ✔ Faça com que esses contatos sejam exibidos. @done(21-08-31 09:17)
 
 Fazendo com que contatos sejam levantados a partir de um servico:
-    ☐ Crie um serviço services/Contato
+    ✔ Crie um serviço services/Contato @done(21-08-31 09:21)
     ☐ Declare um atributo privado contatos contendo o array de contatos que, agora, não deve mais estar na component ListaDeContatos
     ☐ Crie nesse serviço a função getContatos() que retorna a lista de contatos.
     ☐ Importe o serviço ContatoService na Componente ListaDeContatos
