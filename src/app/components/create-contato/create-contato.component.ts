@@ -17,6 +17,8 @@ export class CreateContatoComponent implements OnInit {
   }
 
   constructor() { }
+
+  
   
   cancelar(){
      console.log("Pediu pra cancelar");
@@ -30,5 +32,8 @@ export class CreateContatoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addTelefone():void{
+    this.novoContato.telefones.push("");
+  }
 
 }
