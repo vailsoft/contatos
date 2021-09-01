@@ -15,7 +15,7 @@
                 <a *ngIf="i==0" (click) = "addTelefone()">
                     <i class="material-icons" >add_circle</i>
                 </a>
-                <a *ngIf="i!=0" class="remove">
+                <a *ngIf="i!=0" (click)="removeTelefone(i)" class="remove">
                     <i class="material-icons">remove_circle</i>
                 </a>
             </div>

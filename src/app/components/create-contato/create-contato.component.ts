@@ -9,7 +9,7 @@ import { Contato } from 'src/app/models/Contato';
 export class CreateContatoComponent implements OnInit {
 
   @Output() onCancelarClick:EventEmitter<null> = new EventEmitter();
-
+  
   novoContato:Contato = {
     nome:"Vailson Silva",
     email:"vailsoft@hotmail.com",
@@ -34,6 +34,10 @@ export class CreateContatoComponent implements OnInit {
 
   addTelefone():void{
     this.novoContato.telefones.push("");
+  }
+
+  removeTelefone(pos: number):void{
+    this.novoContato.telefones.splice(pos, 1);
   }
 
 }
