@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Contato } from 'src/app/models/Contato';
-import { ContatoService } from 'src/app/services/contatos.service';
+import { ContatoService } from 'src/app/services/contato.service';
 
 @Component({
   selector: 'app-lista-de-contatos',
@@ -9,20 +9,14 @@ import { ContatoService } from 'src/app/services/contatos.service';
 })
 export class ListaDeContatosComponent implements OnInit {
 
-  contatos:Contato[] = [];
+  public contatos: Contato[];
+  private cs:ContatoService = new ContatoService();
 
   constructor() {
-    this.contatos = ContatoService.getContatos();
-    ContatoService.contatosMudaram.subscribe(
-      contatos => {this.contatos = contatos}
-    )
-  } 
+    this.contatos = this.cs.getContatos();
+  }
 
   ngOnInit(): void {
-  }
-
-  mostrarModal() {
-    ContatoService.editContato({nome:"",email:"",telefones:[""]});
-  }
+  }  
 
 }

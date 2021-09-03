@@ -1,4 +1,4 @@
-article {
+#modal {
     position: fixed;
     top:0;
     left: 0;
@@ -13,51 +13,40 @@ article {
     transition: opacity 3s linear;
 }
 
-article form {
+#modal form {
     background-color: rgba(0,0,0,0.4);
     padding: 40px;
     box-shadow: 0 0 2px inset rgba(256,256,256,0.3);
     width: 400px;
-    display: flex;
-    flex-direction: column;
 }
 
-article form .fechar{
-    align-self: flex-end;
-    cursor: pointer;
-}
-
-article form input{
+#modal form input{
     display: block;
     width: 100%;
 }
 
-article form div {
+#modal form div {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-article form div input {
+#modal form div input {
     display: inline-block;
     margin-right: 10px;
 }
 
-article form div a.remove{
+#modal form div a.remove{
     color: #C00;
 }
 
-article form div a.remove:hover{
+#modal form div a.remove:hover{
     color: rgb(252, 7, 7);
 }
 
-article form .controles{
+#modal form .controles{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 40px;
     margin-bottom: 0;
-}
-
-article form .controles .link{
-    margin-right: auto;
 }
