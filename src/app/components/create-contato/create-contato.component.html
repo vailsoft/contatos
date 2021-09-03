@@ -1,37 +1,25 @@
-<div id="modal">
+<article>
     <form>
+        <a class="fechar" (click)="meEsconda()"><i class="material-icons">close</i></a>
         <label>
             Nome:
-            <input type="text" name="nome" id="nome" [(ngModel)] = "novoContato.nome">
+            <input type="text" name="nome" id="nome" [(ngModel)]="novoContato.nome" >
         </label>
         <label>
             E-mail:
-            <input type="email" name="email" id="email" [(ngModel)] = "novoContato.email">
+            <input type="email" name="email" id="email" [(ngModel)]="novoContato.email">
         </label>
         <label>
             Telefone:
-            <div *ngFor="let tel of novoContato.telefones; let i = index; trackBy: track">
-                <input type="tel" name="telefone_{{i}}" [(ngModel)]="novoContato.telefones[i]">
-                <a *ngIf="i==0" (click) = "addTelefone()">
-                    <i class="material-icons" >add_circle</i>
-                </a>
-                <a *ngIf="i!=0" (click)="removeTelefone(i)" class="remove">
-                    <i class="material-icons">remove_circle</i>
-                </a>
+            <div *ngFor="let tel of novoContato.telefones; let i=index; trackBy: track">
+                <input type="text" name="telefone" id="telefone_{{i}}" [(ngModel)]="novoContato.telefones[i]">
+                <a *ngIf="i==0" (click)="addTelefone()"><i class="material-icons">add_circle</i></a>
+                <a class="remove" *ngIf="i!=0" (click)="rmTelefone(i)"><i class="material-icons">remove_circle</i></a>
             </div>
-            <!-- <div>
-                <input type="email" name="email" id="email">
-                <a class="remove" href=""><i class="material-icons">remove_circle</i></a>
-            </div>
-            <div>
-                <input type="email" name="email" id="email">
-                <a class="remove" href=""><i class="material-icons">remove_circle</i></a>
-            </div> -->
         </label>
-        <pre>{{novoContato | json}}</pre>
         <div class="controles">
-            <button  type="button" (click)="cancelar()" class="link" >Cancelar</button>
-            <button type="button" (click) = "salvar()">Adicionar</button>
+            <button type="button" class="link" *ngIf="novoContato.id" (click)="remover()">Remover contato</button>
+            <button class="salvar" (click)=salvar()>Salvar</button>
         </div>
     </form>
-</div>
+</article>

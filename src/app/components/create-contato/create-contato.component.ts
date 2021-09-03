@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import { Contato } from 'src/app/models/Contato';
-import { ContatoService } from 'src/app/services/contato.service';
+import { ContatoService } from 'src/app/services/contatos.service';
+
 
 @Component({
   selector: 'app-create-contato',
@@ -9,50 +10,63 @@ import { ContatoService } from 'src/app/services/contato.service';
 })
 export class CreateContatoComponent implements OnInit {
 
-  @Output() onCancelarClick:EventEmitter<null> = new EventEmitter();
+  @Input('contato') _novoContato!:Contato;
+  @Output() emissor:EventEmitter<null> = new EventEmitter();
 
-  novoContato:Contato = {
-    nome:"Vailson Silva",
-    email:"vailsoft@hotmail.com",
-    telefones: [""]
+  constructor() {}
+
+  set novoContato(c:Contato){
+    this._novoContato = c;
   }
 
-  cs:ContatoService = new ContatoService();
-
-  constructor() { }
-
-  
-  
-  cancelar(){
-     console.log("Pediu pra cancelar");
-     this.onCancelarClick.emit();
+  get novoContato():Contato{
+    return this._novoContato;
   }
 
-  track(index:number, value:string){
-    return index;
-  }
-  
-  ngOnInit(): void {
+  meEsconda(){
+    this.emissor.emit();
   }
 
-  addTelefone():void{
+  addTelefone(){
     this.novoContato.telefones.push("");
   }
 
-  removeTelefone(pos: number):void{
-    this.novoContato.telefones.splice(pos, 1);
+  rmTelefone(i:number){
+    this.novoContato.telefones.splice(i,1);
+  }
+
+  track(index:number, item:string){
+    return index;
   }
 
   salvar(){
-      this.cs.addContato(this.novoContato);
-      //Sumir depois de cancelar
-      //this.onCancelarClick.emit();
+    if(this.novoContato.id){
+      ContatoService.updateContato(this.novoContato);
+    } else {
+      ContatoService.addContato(this.novoContato);
+    }
+    this.emissor.emit()
+  }
 
+  remover(){
+    if(window.confirm("Tem certeza que deseja remover o contato?")){
+      ContatoService.rmContato(this.novoContato.id!);
+      this.emissor.emit();
+    }
+  }
+
+  ngOnChanges(){
+    console.log("teste");
+  }
+
+  ngOnInit(): void {
+    if(!this.novoContato){
       this.novoContato = {
         nome:"",
-        email: "",
-        telefones: [""]
+        email:"",
+        telefones:[""]
       }
+    }
   }
 
 }
